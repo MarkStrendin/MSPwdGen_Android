@@ -8,7 +8,7 @@ public class crypto {
     public static String hash(String salt, String input) {
         String returnMe = "";
         try {
-            returnMe = SHA1(input + salt);
+            returnMe = SHA256(input + salt);
         } catch (Exception ex) {
             returnMe = "ERROR: " + ex;            
         }
@@ -31,12 +31,21 @@ public class crypto {
         return buf.toString();
     } 
     
-    public static String SHA1(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException { 
+    public static String SHA256(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException { 
         MessageDigest md;
         md = MessageDigest.getInstance("SHA-256");
         byte[] sha1hash = new byte[40];
         md.update(text.getBytes("iso-8859-1"), 0, text.length());
         sha1hash = md.digest();
         return convertToHex(sha1hash);
-    } 
+    }
+    
+    public static String SHA512(String text) throws NoSuchAlgorithmException, UnsupportedEncodingException { 
+        MessageDigest md;
+        md = MessageDigest.getInstance("SHA-512");
+        byte[] sha1hash = new byte[40];
+        md.update(text.getBytes("iso-8859-1"), 0, text.length());
+        sha1hash = md.digest();
+        return convertToHex(sha1hash);
+    }
 }
