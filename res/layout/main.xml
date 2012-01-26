@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_salt"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/txtSalt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" >
+
+        <requestFocus />
+    </EditText>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_input"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <EditText
+        android:id="@+id/txtInput"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/btnGenerate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/button_generate" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="match_parent"
+        android:layout_height="75dp"
+        android:gravity="bottom|center"
+        android:text="@string/button_selectchars"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center" >
+
+        <Button
+            android:id="@+id/btnSel8"
+            style="@style/CharacterButton"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_gen_8" />
+
+        <Button
+            android:id="@+id/btnSel12"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_gen_12" />
+
+        <Button
+            android:id="@+id/btnSel15"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_gen_15" />
+
+        <Button
+            android:id="@+id/btnSel20"
+            android:layout_width="75dp"
+            android:layout_height="wrap_content"
+            android:text="@string/button_gen_20" />
+
+    </LinearLayout>
+
+    <EditText
+        android:id="@+id/txtOutput"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:enabled="false"
+        android:inputType="textMultiLine" />
+
+</LinearLayout>

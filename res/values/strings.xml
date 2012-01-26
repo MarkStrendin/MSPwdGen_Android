@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">MSPwdGen</string>
+    <string name="label_salt">Salt value (optional)</string>
+    <string name="label_input">Input value</string>
+    <string name="button_generate">Generate passwords!</string>
+    <string name="button_gen_8">8</string>
+    <string name="button_gen_12">12</string>
+    <string name="button_gen_15">15</string>
+    <string name="button_gen_20">20</string>
+    <string name="button_selectchars">Copy characters to clipboard:</string>
+
+</resources>
