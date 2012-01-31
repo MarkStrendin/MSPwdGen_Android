@@ -2,6 +2,7 @@ package ca.strendin.android.MSPwdGen;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.ClipboardManager;
 import android.view.View;
@@ -14,8 +15,10 @@ public class MSPwdGenActivity extends Activity {
     String Salt;
     String Input;
     
-    Button generateButton, btnSel8, btnSel12, btnSel15, btnSel20;      
-    TextView txtSalt, txtInput, txtOutput;
+    Button generateButton, btnAlphaSel8, btnAlphaSel12, btnAlphaSel15, 
+        btnAlphaSel20, btnSpecialSel8, btnSpecialSel12, btnSpecialSel15, 
+        btnSpecialSel20, saltDialogButton;      
+    TextView txtSalt, txtInput, txtOutput_Alpha, txtOutput_Special;
       
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -30,51 +33,93 @@ public class MSPwdGenActivity extends Activity {
         /* Set up references to the UI elements */
         
         generateButton = (Button) findViewById(R.id.btnGenerate);
-        btnSel8 = (Button) findViewById(R.id.btnSel8);
-        btnSel12 = (Button) findViewById(R.id.btnSel12);
-        btnSel15 = (Button) findViewById(R.id.btnSel15);
-        btnSel20 = (Button) findViewById(R.id.btnSel20);
+        saltDialogButton = (Button) findViewById(R.id.btnOpenSaltDialog);
+        btnAlphaSel8 = (Button) findViewById(R.id.btnAlphaSel8);
+        btnAlphaSel12 = (Button) findViewById(R.id.btnAlphaSel12);
+        btnAlphaSel15 = (Button) findViewById(R.id.btnAlphaSel15);
+        btnAlphaSel20 = (Button) findViewById(R.id.btnAlphaSel20);
+        btnSpecialSel8 = (Button) findViewById(R.id.btnSpecialSel8);
+        btnSpecialSel12 = (Button) findViewById(R.id.btnSpecialSel12);
+        btnSpecialSel15 = (Button) findViewById(R.id.btnSpecialSel15);
+        btnSpecialSel20 = (Button) findViewById(R.id.btnSpecialSel20);
 
-        txtSalt = (TextView) findViewById(R.id.txtSalt);
+        //txtSalt = (TextView) findViewById(R.id.txtSalt);
         txtInput = (TextView) findViewById(R.id.txtInput);
-        txtOutput = (TextView) findViewById(R.id.txtOutput);
+        txtOutput_Alpha = (TextView) findViewById(R.id.txtOutput_Alpha);
+        txtOutput_Special = (TextView) findViewById(R.id.txtOutput_Special);
         
         /* Set up onClick listeners */
         
         generateButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                GenerateButtonPress();                
+            public void onClick(View v) {  
+                GenerateButtonPress();                   
             }            
         });
         
-        btnSel8.setOnClickListener(new View.OnClickListener() {
+        saltDialogButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                Intent saltDialogIntent = new Intent("ca.strendin.android.MSPwdGen.SALTDIALOG");
+                startActivity(saltDialogIntent);          
+            }            
+        });
+
+        btnAlphaSel8.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) { 
                 MessageBox("First 8 characters copied to clipboard!");
-                copyCharactersToClipboard(8,txtOutput.getText().toString());
+                copyCharactersToClipboard(8,txtOutput_Alpha.getText().toString());
             }            
         });
         
-        btnSel12.setOnClickListener(new View.OnClickListener() {
+        btnAlphaSel12.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {  
                 MessageBox("First 12 characters copied to clipboard!");
-                copyCharactersToClipboard(12,txtOutput.getText().toString());          
+                copyCharactersToClipboard(12,txtOutput_Alpha.getText().toString());          
             }            
         });
         
-        btnSel15.setOnClickListener(new View.OnClickListener() {
+        btnAlphaSel15.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {  
                 MessageBox("First 15 characters copied to clipboard!");
-                copyCharactersToClipboard(15,txtOutput.getText().toString());
+                copyCharactersToClipboard(15,txtOutput_Alpha.getText().toString());
             }            
         });
         
-        btnSel20.setOnClickListener(new View.OnClickListener() {
+        btnAlphaSel20.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {  
                 MessageBox("First 20 characters copied to clipboard!");
-                copyCharactersToClipboard(20,txtOutput.getText().toString());
+                copyCharactersToClipboard(20,txtOutput_Alpha.getText().toString());
             }            
-        });        
-    }
+        });
+
+        btnSpecialSel8.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) { 
+                MessageBox("First 8 characters copied to clipboard!");
+                copyCharactersToClipboard(8,txtOutput_Special.getText().toString());
+            }            
+        });
+        
+        btnSpecialSel12.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {  
+                MessageBox("First 12 characters copied to clipboard!");
+                copyCharactersToClipboard(12,txtOutput_Special.getText().toString());          
+            }            
+        });
+        
+        btnSpecialSel15.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {  
+                MessageBox("First 15 characters copied to clipboard!");
+                copyCharactersToClipboard(15,txtOutput_Special.getText().toString());
+            }            
+        });
+        
+        btnSpecialSel20.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {  
+                MessageBox("First 20 characters copied to clipboard!");
+                copyCharactersToClipboard(20,txtOutput_Special.getText().toString());
+            }            
+        });
+    }    
+    
     
     
     /* 
@@ -116,18 +161,27 @@ public class MSPwdGenActivity extends Activity {
      * the clipboard is counterproductive.
      */
     private void toggleClipBoardButtons(boolean setToThis) {
-        btnSel8.setEnabled(setToThis);
-        btnSel12.setEnabled(setToThis);
-        btnSel15.setEnabled(setToThis);
-        btnSel20.setEnabled(setToThis);        
+        btnAlphaSel8.setEnabled(setToThis);
+        btnAlphaSel12.setEnabled(setToThis);
+        btnAlphaSel15.setEnabled(setToThis);
+        btnAlphaSel20.setEnabled(setToThis);
+        btnSpecialSel8.setEnabled(setToThis);
+        btnSpecialSel12.setEnabled(setToThis);
+        btnSpecialSel15.setEnabled(setToThis);
+        btnSpecialSel20.setEnabled(setToThis);        
     }
     
     /*
      * This is called when the "Generate" button is pressed 
      */
     private void GenerateButtonPress() {
-        toggleClipBoardButtons(true);
-        txtOutput.setText(crypto.hash(txtSalt.getText().toString(),txtInput.getText().toString()));
+        String salt = "123";
+        String input = txtInput.getText().toString();
+
+        txtOutput_Alpha.setText(crypto.createPassword_Alpha(input, salt));
+        txtOutput_Special.setText(crypto.createPassword_Special(input, salt));
+        
         hideSoftKeyboard();
+        toggleClipBoardButtons(true);
     }
 }
