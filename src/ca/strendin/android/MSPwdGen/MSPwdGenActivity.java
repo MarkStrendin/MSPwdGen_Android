@@ -13,9 +13,7 @@ import android.widget.Toast;
 
 public class MSPwdGenActivity extends Activity {    
     String Salt;
-
     String Input;
-    
     Button generateButton, btnAlphaSel8, btnAlphaSel12, btnAlphaSel15, 
         btnAlphaSel20, btnSpecialSel8, btnSpecialSel12, btnSpecialSel15, 
         btnSpecialSel20, saltDialogButton;      
@@ -187,5 +185,40 @@ public class MSPwdGenActivity extends Activity {
         */
         hideSoftKeyboard();
         toggleClipBoardButtons(true);
+    }
+
+    private void clearInputFields() {
+        
+        if (txtInput.getText() != null){
+            txtInput.setText(null);
+        }
+        
+        if (txtOutput_Alpha.getText() != null){
+            txtOutput_Alpha.setText(null);
+        }
+        
+        if (txtOutput_Special.getText() != null){
+            txtOutput_Special.setText(null);
+        }      
+                
+        toggleClipBoardButtons(false);   
+    }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        clearInputFields();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        clearInputFields();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        clearInputFields();
     }
 }

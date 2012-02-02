@@ -41,6 +41,26 @@ public class SaltDialog extends Activity{
         
     }
     
+    private void clearInputFields() {
+        TextView txtSaltInput = (TextView) findViewById(R.id.txtSaltInput);
+        
+        if (txtSaltInput.getText() != null){
+            txtSaltInput.setText(null);
+        }
+    }
+    
+    @Override
+    protected void onPause() {
+        super.onPause();
+        clearInputFields();
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        clearInputFields();
+    }
+
     /*
      * This displays a toast messagebox with the specified message
      */
