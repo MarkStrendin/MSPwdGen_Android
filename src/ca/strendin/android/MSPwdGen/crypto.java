@@ -3,9 +3,7 @@ import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest; 
 import java.security.NoSuchAlgorithmException; 
 
-
 public class crypto {    
-    public static final String APP_SALT = "845524565";
     
     public static String createPassword_Alpha(String input, String salt) {        
         char[] characterArray_Alpha = {'1','2','3','4','5','6','7','8','9','0','a','b','c','d','e','f',
@@ -13,7 +11,7 @@ public class crypto {
                 'w','x','y','z','A','B','C','D','E','F','G','H','I','J','K','L',
                 'M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z'};
         try {
-            return genPasswordWithThisHash(characterArray_Alpha, SHA512(input.concat(salt).concat(APP_SALT)));
+            return genPasswordWithThisHash(characterArray_Alpha, SHA512(input.concat(salt)));
         } catch(Exception ex) {
             return "SOMETHING BROKE: " + ex.toString();
         }
@@ -28,7 +26,7 @@ public class crypto {
                 '$','%','^','*','(',')','_','+','?'};
                
         try {
-            return genPasswordWithThisHash(characterArray_Special, SHA512(input.concat(salt).concat(APP_SALT)));
+            return genPasswordWithThisHash(characterArray_Special, SHA512(input.concat(salt)));
         } catch(Exception ex) {
             return "SOMETHING BROKE: " + ex.toString();
         }
