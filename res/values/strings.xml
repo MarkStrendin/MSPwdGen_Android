@@ -20,5 +20,6 @@
     <string name="label_salt_expl_3">The Master Key can be any length, but generally the more characters, the better.</string>
     <string name="label_salt_expl_4">If left empty, a random key will be generated.</string>
     <string name="label_salt_expl_5"></string>
+    <string name="button_close">Close without saving</string>
 
 </resources>

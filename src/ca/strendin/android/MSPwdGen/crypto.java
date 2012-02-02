@@ -80,13 +80,11 @@ public class crypto {
         md.update(text.getBytes("iso-8859-1"), 0, text.length());
         sha1hash = md.digest();
         return sha1hash;
-    }
-         
-    /*
-    public static String decrypt(String cyphertext, String sharedSecret) {
-        return cyphertext;
-    }
-    */
+    }    
     
+    public static String genRandomKey() {
+        Long currentMillis = System.currentTimeMillis();
+        return currentMillis.toString();
+    }
     
 }

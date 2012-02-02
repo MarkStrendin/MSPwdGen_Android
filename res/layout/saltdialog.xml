@@ -59,7 +59,7 @@
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
     <EditText
-        android:id="@+id/editText1"
+        android:id="@+id/txtSaltInput"
         android:layout_width="match_parent"
         android:layout_margin="5dp"
         android:layout_marginBottom="10dp"
@@ -76,5 +76,13 @@
         android:layout_margin="5dp"
         android:layout_marginBottom="10dp"
         android:text="@string/button_save" />
+
+    <Button
+        android:id="@+id/btnCancel"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:layout_marginBottom="10dp"
+        android:text="@string/button_close" />
 
 </LinearLayout>

@@ -4,27 +4,41 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class SaltDialog extends Activity{
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        // TODO Auto-generated method stub
         super.onCreate(savedInstanceState);
         
         setContentView(R.layout.saltdialog);
-        
-        Button saveButton;
 
-        saveButton = (Button) findViewById(R.id.btnSaveButton);
+        Button saveButton = (Button) findViewById(R.id.btnSaveButton);
+        Button cancelButton = (Button) findViewById(R.id.btnCancel);
         
         saveButton.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {  
-                //saveButtonPress();
                 saveButtonPress();
             }            
         });
+        
+        cancelButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                cancelButtonPress();
+            }            
+        });
+        
+        try {
+            String salt = storage.getKey(this.getApplicationContext());
+            MessageBox("Salt loaded from file");
+            TextView txtSaltInput = (TextView) findViewById(R.id.txtSaltInput);
+            txtSaltInput.setText(salt);
+        } catch (Exception ex) {
+            MessageBox("Exception: " + ex.toString());
+        }
+        
     }
     
     /*
@@ -34,8 +48,22 @@ public class SaltDialog extends Activity{
         Toast.makeText(this,message,Toast.LENGTH_SHORT).show();        
     }
     
-    private void saveButtonPress() { 
-        this.finish();     
+    private void cancelButtonPress() {
+        this.finish();    
+    }
+    
+    private void saveButtonPress() {
+        try {
+            TextView txtSaltInput = (TextView) findViewById(R.id.txtSaltInput);        
+            String theKey = txtSaltInput.getText().toString();
+            storage.saveKey(this.getApplicationContext(),theKey);
+            MessageBox("Master key saved!");
+        } catch (Exception ex) {
+            MessageBox("Error saving Master Key!");
+            MessageBox(ex.toString());
+        }
+        this.finish();
+        
     }
     
 }

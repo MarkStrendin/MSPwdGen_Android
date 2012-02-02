@@ -13,12 +13,13 @@ import android.widget.Toast;
 
 public class MSPwdGenActivity extends Activity {    
     String Salt;
+
     String Input;
     
     Button generateButton, btnAlphaSel8, btnAlphaSel12, btnAlphaSel15, 
         btnAlphaSel20, btnSpecialSel8, btnSpecialSel12, btnSpecialSel15, 
         btnSpecialSel20, saltDialogButton;      
-    TextView txtSalt, txtInput, txtOutput_Alpha, txtOutput_Special;
+    TextView txtInput, txtOutput_Alpha, txtOutput_Special;
       
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -42,8 +43,7 @@ public class MSPwdGenActivity extends Activity {
         btnSpecialSel12 = (Button) findViewById(R.id.btnSpecialSel12);
         btnSpecialSel15 = (Button) findViewById(R.id.btnSpecialSel15);
         btnSpecialSel20 = (Button) findViewById(R.id.btnSpecialSel20);
-
-        //txtSalt = (TextView) findViewById(R.id.txtSalt);
+        
         txtInput = (TextView) findViewById(R.id.txtInput);
         txtOutput_Alpha = (TextView) findViewById(R.id.txtOutput_Alpha);
         txtOutput_Special = (TextView) findViewById(R.id.txtOutput_Special);
@@ -118,9 +118,7 @@ public class MSPwdGenActivity extends Activity {
                 copyCharactersToClipboard(20,txtOutput_Special.getText().toString());
             }            
         });
-    }    
-    
-    
+    }
     
     /* 
      * This copies the specified number of characters (numCharacters) from
@@ -175,12 +173,18 @@ public class MSPwdGenActivity extends Activity {
      * This is called when the "Generate" button is pressed 
      */
     private void GenerateButtonPress() {
-        String salt = "123";
-        String input = txtInput.getText().toString();
-
-        txtOutput_Alpha.setText(crypto.createPassword_Alpha(input, salt));
-        txtOutput_Special.setText(crypto.createPassword_Special(input, salt));
-        
+        try {
+            String saltFromFile = storage.getKey(this.getApplicationContext());
+            String input = txtInput.getText().toString();
+            txtOutput_Alpha.setText(crypto.createPassword_Alpha(input, saltFromFile));
+            txtOutput_Special.setText(crypto.createPassword_Special(input, saltFromFile));
+            
+        } catch (Exception ex) {
+            MessageBox("Error accessing Master Key");
+            MessageBox(ex.toString());
+        }
+        /*
+        */
         hideSoftKeyboard();
         toggleClipBoardButtons(true);
     }

@@ -8,7 +8,7 @@
 
     <application
         android:icon="@drawable/ic_launcher"
-        android:label="Mark's Password Generator" android:theme="@android:style/Theme.Light.NoTitleBar">
+        android:label="Mark's Password Generator" android:theme="@android:style/Theme.Light">
         <activity
             android:name=".MSPwdGenActivity"
             android:label="Mark's Password Generator" 
