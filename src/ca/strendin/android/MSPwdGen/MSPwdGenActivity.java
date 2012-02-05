@@ -46,6 +46,14 @@ public class MSPwdGenActivity extends Activity {
         txtOutput_Alpha = (TextView) findViewById(R.id.txtOutput_Alpha);
         txtOutput_Special = (TextView) findViewById(R.id.txtOutput_Special);
         
+        /* Check for the existance of the master key file, and if
+         * it doesn't exist, create a new one */
+        
+        if (!storage.checkKey(this.getApplicationContext())) {
+            MessageBox("Unrecoverable error reading the saved Master Key");
+            this.finish();            
+        } 
+        
         /* Set up onClick listeners */
         
         generateButton.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +186,7 @@ public class MSPwdGenActivity extends Activity {
             txtOutput_Special.setText(crypto.createPassword_Special(input, saltFromFile));
             
         } catch (Exception ex) {
-            MessageBox("Error accessing Master Key");
+            MessageBox("Error accessing Master Key");            
             MessageBox(ex.toString());
         }
         /*

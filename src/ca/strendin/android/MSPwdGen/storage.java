@@ -1,6 +1,7 @@
 package ca.strendin.android.MSPwdGen;
 
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -23,6 +24,24 @@ public class storage {
         FileOutputStream fos = fileContext.getApplicationContext().openFileOutput(KEYFILE_NAME, Context.MODE_PRIVATE);
         fos.write(saveThisKey.getBytes());
         fos.close();
+    }
+    
+    public static boolean checkKey(Context fileContext) {        
+        try {
+            FileInputStream fos = fileContext.getApplicationContext().openFileInput(KEYFILE_NAME);
+            fos.close();
+            return true;
+        } catch (FileNotFoundException ex) {
+            // Attempt to make the file
+            try {
+                saveKey(fileContext,"");
+                return true;                
+            } catch (Exception ex2) {
+                return false;
+            }
+        } catch (Exception ex) {
+            return false;
+        }
     }
 
     public static String getKey(Context fileContext) throws IOException {

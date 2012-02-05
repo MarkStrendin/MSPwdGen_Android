@@ -32,7 +32,6 @@ public class SaltDialog extends Activity{
         
         try {
             String salt = storage.getKey(this.getApplicationContext());
-            MessageBox("Salt loaded from file");
             TextView txtSaltInput = (TextView) findViewById(R.id.txtSaltInput);
             txtSaltInput.setText(salt);
         } catch (Exception ex) {
